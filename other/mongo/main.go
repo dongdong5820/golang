@@ -8,6 +8,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
+	"os"
 )
 
 // 字典结构体
@@ -24,8 +25,30 @@ type Dictionary struct {
 
 func main() {
 	fmt.Println("mongodb")
+	host := "10.5.7.122:27018"
+
+	var user, password string
+	args := os.Args
+	fmt.Printf("%+v\n", args)
+	if len(args) > 1 {
+		user = "test"
+		password = "test"
+	} else {
+		user = ""
+		password = ""
+	}
+	/*  协议格式
+	mongodb://[username:password@]host1[:port1][,host2[:port2],…[,hostN[:portN]]][/[database][?options]]
+	mongodb:// 这是固定的格式，必须要指定。
+	*/
+	var uri string
+	if user != "" && password != "" {
+		uri = "mongodb://" + user + ":" + password + "@" + host
+	} else {
+		uri = "mongodb://" + host
+	}
 	// 设置客户端连接配置
-	clientOptions := options.Client().ApplyURI("mongodb://10.5.7.122:27018")
+	clientOptions := options.Client().ApplyURI(uri)
 	//  连接到MongoDB
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
