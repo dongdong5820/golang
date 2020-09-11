@@ -13,6 +13,7 @@ import (
 // 执行go源码文件 go run hello_world.go
 func main() {
 	fmt.Println("hello, world")
+	fmt.Printf("%d", zero(0))
 	startStr := "1998-07-01 08:49:50" //"0001-01-01 00:00:00"//"1998-07-01 08:49:50"
 	if len(startStr) == 10 {
 		startStr = startStr + " 00:00:00"
@@ -38,15 +39,6 @@ func main() {
 	supplierId = "G" + strconv.Itoa((id + 1))
 	fmt.Println(supplierId)
 	fmt.Printf("%T\n", supplierId)
-	// 随机种子
-	//rand.Seed(time.Now().Unix())
-	// 生成 20 个 8 位的随机数
-	//result := make([]string, 0)
-	for i := 0; i < 20; i++ {
-		//result := rand.Intn(100000000)
-		//result := RangeRand(100000,999999)
-		//fmt.Println(result)
-	}
 
 	strList := []string{}
 	for _, tmp := range strList {
@@ -72,4 +64,8 @@ func RangeRand(min, max int64) string {
 	}
 
 	return strconv.Itoa(int(data))
+}
+
+func zero(number int) int {
+	return 100 / number
 }
