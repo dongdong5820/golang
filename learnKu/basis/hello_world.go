@@ -13,7 +13,13 @@ import (
 // 执行go源码文件 go run hello_world.go
 func main() {
 	fmt.Println("hello, world")
-	fmt.Printf("%d", zero(0))
+	n1, n2 := 2, 3
+	d1 := float64(n1) / float64(n2)
+	fmt.Println(d1)
+	fmt.Println(int32(math.Ceil(d1)))
+	fmt.Println(int32(math.Floor(d1)))
+	splice := []string{"a", "b", "c"}
+	fmt.Println(strings.Join(splice, ","))
 	startStr := "1998-07-01 08:49:50" //"0001-01-01 00:00:00"//"1998-07-01 08:49:50"
 	if len(startStr) == 10 {
 		startStr = startStr + " 00:00:00"
@@ -21,7 +27,9 @@ func main() {
 	startTime, _ := time.ParseInLocation("2006-01-02 15:04:05", startStr, time.Local)
 	fmt.Println("startTime: ", startTime)
 	str2 := startTime.Format("2006-01-02 15:04:05")
+	str3 := startTime.Format("2006-01-02")
 	fmt.Println("time to string: ", str2)
+	fmt.Println("time to dateString: ", str3)
 	fmt.Println("date to string: ", str2[0:10])
 
 	fmt.Println(fmt.Sprintf("G%06s", "2565689"))
@@ -64,8 +72,4 @@ func RangeRand(min, max int64) string {
 	}
 
 	return strconv.Itoa(int(data))
-}
-
-func zero(number int) int {
-	return 100 / number
 }
