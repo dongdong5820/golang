@@ -1,2 +1,4 @@
 # goland project files
 /.idea
+./go.mod
+./go.sum
